@@ -24,7 +24,7 @@ function App() {
   return (
     <div>
       <SearchBar/>
-      <DisplayMusic/>
+      <DisplayMusic parentSongs={songs} />
     </div>
   );
 }

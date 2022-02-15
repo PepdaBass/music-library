@@ -15,16 +15,16 @@ const SearchBar = (props) => {
         <form onSubmit={handleSubmit}>
             <div className="song-search">
                 <div>
-                    <input type="submit" value={props.title} placeholder="Song Title" />
+                    <input type="search" value={props.title} placeholder="Song Title" />
                 </div>
                 <div>
-                    <input type="submit" value={props.album} placeholder="Song Album" />
+                    <input type="search" value={props.album} placeholder="Song Album" />
                 </div>
                 <div>
-                    <input type="submit" value={props.artist} placeholder="Song Artist" />
+                    <input type="search" value={props.artist} placeholder="Song Artist" />
                 </div>
                 <div>
-                    <input type="submit" value={props.genre} placeholder="Song Genre" />
+                    <input type="search" value={props.genre} placeholder="Song Genre" />
                 </div>
             </div>
         </form>

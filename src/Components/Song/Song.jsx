@@ -1,6 +1,7 @@
 
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import "./Song.css"
 
 
@@ -10,6 +11,16 @@ const Song = (props) => {
     const [album, setAlbum] = useState("");
     const [artist, setArtist] = useState("");
     const [genre, setGenre] = useState("");
+    const [releaseDate, setReleaseDate] = useState("");
+
+    useEffect(() => {
+        setTitle(props.title);
+        setAlbum(props.album);
+        setArtist(props.artist);
+        setGenre(props.genre);
+        setReleaseDate(props.releaseDate); 
+    }, [])
+
 
     return ( 
         <div className="song-info">
@@ -24,6 +35,9 @@ const Song = (props) => {
             </div>
             <div className="song-genre">
                 <h4>{genre}</h4>
+            </div>
+            <div className="song-release-date">
+                <h4>{releaseDate}</h4>
             </div>
         </div>
      );
