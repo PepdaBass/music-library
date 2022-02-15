@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Song from '../Song/Song';
+import DisplayMusic from '../DisplayMusic/DisplayMusic';
 import "./SearchBar.css"
 
 const SearchBar = (props) => {
@@ -9,25 +9,25 @@ const SearchBar = (props) => {
         event.preventDefault();
     }
 
-    
+    function filterSongData(data) {
+        let filterList = props.parentSongs.filter((data) => props.parentSongs.data.includes(data));
+        return filterList;
+    }
+
 
     return ( 
+        <div>
         <form onSubmit={handleSubmit}>
             <div className="song-search">
                 <div>
-                    <input type="search" value={props.title} placeholder="Song Title" />
-                </div>
-                <div>
-                    <input type="search" value={props.album} placeholder="Song Album" />
-                </div>
-                <div>
-                    <input type="search" value={props.artist} placeholder="Song Artist" />
-                </div>
-                <div>
-                    <input type="search" value={props.genre} placeholder="Song Genre" />
+                    <input type="search" value={props.parentSongs.title} placeholder="Search song list..." onChange={(event) => filterSongData(event.target.value)}/>
                 </div>
             </div>
         </form>
+        
+
+        <DisplayMusic parentSongs = {props.parentSongs}/>
+        </div>
      );
 }
  

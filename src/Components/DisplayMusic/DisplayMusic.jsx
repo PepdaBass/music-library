@@ -1,18 +1,33 @@
 
 import React from 'react';
-import axios from 'axios';
 import Song from '../Song/Song';
 import "./DisplayMusic.css";
 
 const DisplayMusic = (props) => {
     return ( 
-        <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Album</th>
+                    <th>Artist</th>
+                    <th>Genre</th>
+                    <th>Release Date</th>
+                </tr>
+            </thead>
+            <tbody>
             {props.parentSongs.map((song, i) => {
                 return (
-                    <Song key={i} title={song.title} album={song.album} artist={song.artist} genre={song.genre} releaseDate={song.releaseDate}/>
-                )
-            })}
-        </div>
+                <tr key={i}>
+                    <td>{song.title}</td>
+                    <td>{song.album}</td>
+                    <td>{song.artist}</td>
+                    <td>{song.genre}</td>
+                    <td>{song.releaseDate}</td>
+                </tr>
+                )})}
+            </tbody>
+        </table>
      );
 }
  
