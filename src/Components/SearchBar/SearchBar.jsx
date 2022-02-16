@@ -15,7 +15,7 @@ const SearchBar = (props) => {
             <form onSubmit={handleSubmit}>
                 <div className="song-search">
                     <div>
-                        <input type="search" id="mySearch" name="q" placeholder="Search song list..." onChange={(event) => props.filterSongs(event.target.value)}/>
+                        <input type="text" placeholder="Search song info..." onChange={(event) => props.handleSubmit(event.target.value)}/>
                     </div>
                 </div>
             </form>

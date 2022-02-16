@@ -9,6 +9,7 @@ import './App.css';
 function App() {
 
   const [songs, setSongs] = useState([]);
+  const [search, setSearch] = useState([]);
 
 
   useEffect(() => {
@@ -21,20 +22,26 @@ function App() {
   }
 
 
-  function filterSongs(value) {
-    let searchList = [];
-    searchList.push(songs.filter(songs.title.value));
-    searchList.push(songs.filter(songs.album.value));
-    searchList.push(songs.filter(songs.artist.value));
-    searchList.push(songs.filter(songs.genre.value));
-    searchList.push(songs.filter(songs.releaseDate.value));
-    return searchList;
-  }
+  // const searchData = (value, type) => {
+  //   songs.filter((value) => {
+  //     if (search == "") {
+  //       return value;
+  //     }
+  //     else if (value.type.toLowerCase().includes(search.toLowerCase())) {
+  //       return value;
+  //     }
+  //   }).map((value, i) => {
+  //     return value.type;
+  //   })
+  //   return setSearch(value.type);
+  // }
+
+
 
   return (
     <div>
       <NavBar />
-      <SearchBar parentSongs = {songs} filterSongs = {filterSongs}/>
+      <SearchBar parentSongs = {songs} />
     </div>
   );
 }
