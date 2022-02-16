@@ -5,7 +5,7 @@ import "./DisplayMusic.css";
 
 const DisplayMusic = (props) => {
     return ( 
-        <table>
+        <table className="table table-striped table-dark">
             <thead>
                 <tr>
                     <th>Title</th>

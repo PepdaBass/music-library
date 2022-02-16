@@ -11,16 +11,19 @@ const SearchBar = (props) => {
 
     return ( 
         <div>
-        <form onSubmit={handleSubmit}>
-            <div className="song-search">
-                <div>
-                    <input type="search" id="mySearch" name="q" placeholder="Search song list..." onChange={(event) => props.filterSongs(event.target.value)}/>
+            <div className='search-bar'>
+            <form onSubmit={handleSubmit}>
+                <div className="song-search">
+                    <div>
+                        <input type="search" id="mySearch" name="q" placeholder="Search song list..." onChange={(event) => props.filterSongs(event.target.value)}/>
+                    </div>
                 </div>
+            </form>
             </div>
-        </form>
-        
-
-        <DisplayMusic parentSongs = {props.parentSongs}/>
+            
+            <div>
+            <DisplayMusic parentSongs = {props.parentSongs}/>
+            </div>
         </div>
      );
 }

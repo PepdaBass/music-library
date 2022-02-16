@@ -1,9 +1,10 @@
 
 import React from 'react';
+import './NavBar.css'
 
 const NavBar = (props) => {
     return ( 
-        <nav>MusicLibrary</nav>
+        <nav className="navbar bg-dark text-muted">MusicLibrary</nav>
      );
 }
  
