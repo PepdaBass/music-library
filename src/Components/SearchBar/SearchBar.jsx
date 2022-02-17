@@ -1,6 +1,5 @@
 
 import React from 'react';
-import DisplayMusic from '../DisplayMusic/DisplayMusic';
 import "./SearchBar.css"
 
 const SearchBar = (props) => {
@@ -10,20 +9,14 @@ const SearchBar = (props) => {
     }
 
     return ( 
-        <div>
-            <div className='search-bar'>
-            <form onSubmit={handleSubmit}>
-                <div className="song-search">
-                    <div>
-                        <input type="text" placeholder="Search song info..." onChange={(event) => props.handleSubmit(event.target.value)}/>
-                    </div>
+        <div className='search-bar'>
+        <form onSubmit={handleSubmit}>
+            <div className="song-search">
+                <div>
+                    <input type="text" placeholder="Search song info..." onChange={(event) => props.handleSubmit(event.target.value)}/>
                 </div>
-            </form>
             </div>
-            
-            <div>
-            <DisplayMusic parentSongs = {props.parentSongs}/>
-            </div>
+        </form>
         </div>
      );
 }

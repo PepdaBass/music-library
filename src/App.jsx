@@ -3,6 +3,7 @@ import react, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SearchBar from './Components/SearchBar/SearchBar';
 import NavBar from './Components/NavBar/NavBar';
+import DisplayMusic from './Components/DisplayMusic/DisplayMusic';
 import './App.css';
 
 
@@ -16,9 +17,22 @@ function App() {
     getAllSongs();
     }, [])
 
+  useEffect(() => {
+    deleteSong();
+  }, [])
+
   async function getAllSongs(){
     let response = await axios.get('http://127.0.0.1:8000/music/');
     setSongs(response.data);
+  }
+
+  async function deleteSong(songs){
+    console.log(songs)
+    let response = await axios.delete(`http://127.0.0.1:8000/music/${songs}/`);
+    console.log(response)
+    if (response.status === 204) {
+      await getAllSongs();
+    }
   }
 
 
@@ -41,7 +55,8 @@ function App() {
   return (
     <div>
       <NavBar />
-      <SearchBar parentSongs = {songs} />
+      <SearchBar />
+      <DisplayMusic parentSongs = {songs} deleteSong = {deleteSong}/>
     </div>
   );
 }

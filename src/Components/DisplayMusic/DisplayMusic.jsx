@@ -13,6 +13,7 @@ const DisplayMusic = (props) => {
                     <th>Artist</th>
                     <th>Genre</th>
                     <th>Release Date</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +25,7 @@ const DisplayMusic = (props) => {
                     <td>{song.artist}</td>
                     <td>{song.genre}</td>
                     <td>{song.releaseDate}</td>
+                    <td><button onClick={() => props.deleteSong(song.id)}>DELETE</button></td>
                 </tr>
                 )})}
             </tbody>
