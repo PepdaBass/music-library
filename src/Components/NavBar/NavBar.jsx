@@ -4,7 +4,10 @@ import './NavBar.css'
 
 const NavBar = (props) => {
     return ( 
-        <nav className="navbar bg-dark text-muted">MusicLibrary</nav>
+        <nav className="navbar bg-dark text-light">
+            <h2>Music<strong className="text-muted">Library</strong></h2>
+        
+        </nav>
      );
 }
  
