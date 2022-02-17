@@ -13,6 +13,10 @@ const DisplayMusic = ({ deleteSong, parentSongs }) => {
         setEditSongID(song.id);
     }
 
+    function handleCancelClick(event) {
+        setEditSongID(null);
+    }
+
     async function editSongData() {
 
     }
@@ -36,7 +40,7 @@ const DisplayMusic = ({ deleteSong, parentSongs }) => {
                     return (
                         <Fragment>
                         {editSongID === song.id ? (
-                        <EditableRow song={song} editSongData={editSongData} i={i} /> 
+                        <EditableRow song={song} editSongData={editSongData} i={i} handleCancelClick={handleCancelClick} /> 
                         ) : (
                         <ReadOnlyRow i={i} song={song} handleEditClick={handleEditClick} deleteSong={deleteSong} />
                         )}
