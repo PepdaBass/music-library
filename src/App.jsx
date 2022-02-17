@@ -22,9 +22,7 @@ function App() {
     deleteSong();
   }, [])
 
-  useEffect(() => {
-    postNewSong();
-  }, [])
+  
 
   async function getAllSongs(){
     let response = await axios.get('http://127.0.0.1:8000/music/');
@@ -41,19 +39,7 @@ function App() {
 
 
 
-  async function postNewSong(newSong){
-    console.log(newSong)
-    let response = await axios.post('http://127.0.0.1:8000/music/', newSong);
-    console.log(response)
-    if (response.status === 201) {
-      await getAllSongs();
-    }
-  }
-
-  function addNewSong(song){
-    let tempSongs = [...songs, song];
-    setSongs(tempSongs);
-  }
+  
 
 
   // const searchData = (value, type) => {
@@ -76,7 +62,7 @@ function App() {
     <div>
       <NavBar />
       <SearchBar />
-      <CreateSong parentSongs = {songs} postNewSong = {postNewSong} />
+      <CreateSong parentSongs = {songs} getAllSongs = {getAllSongs}/>
       <DisplayMusic parentSongs = {songs} deleteSong = {deleteSong}/>
     </div>
   );

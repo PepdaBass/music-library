@@ -1,6 +1,7 @@
 
 
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import "./CreateSong.css"
 
 
@@ -12,7 +13,7 @@ const CreateSong = (props) => {
     const [genre, setGenre] = useState("");
     const [release_date, setReleaseDate] = useState("");
 
-    function handleSubmit(event){
+    async function postNewSong(event){
         event.preventDefault();
         let newSong = {
             title : title,
@@ -21,21 +22,23 @@ const CreateSong = (props) => {
             genre : genre,
             release_date : release_date
         }
-        return newSong;
-    }
+        console.log(newSong)
+        let response = await axios.post('http://127.0.0.1:8000/music/', newSong);
+        console.log(response)
+        if (response.status === 201) {
+          await props.getAllSongs();
+        }
+      }
 
-    useEffect(() => {
-        setTitle(props.title);
-        setAlbum(props.album);
-        setArtist(props.artist);
-        setGenre(props.genre);
-        setReleaseDate(props.release_date); 
-    }, [])
+      useEffect(() => {
+        postNewSong();
+      }, [])
+
 
 
     return ( 
         <div>
-            <form onSubmit={() => props.postNewSong(() => handleSubmit)}>
+            <form onSubmit={postNewSong}>
                 <div>
                     <div>
                         <label>Title</label>
@@ -61,7 +64,6 @@ const CreateSong = (props) => {
                         <button type="submit">Add New Song</button>
                     </div>
                 </div>
-
             </form>
         </div>
         
