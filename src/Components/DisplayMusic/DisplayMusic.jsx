@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Song from '../Song/Song';
+import Song from '../CreateSong/CreateSong';
 import "./DisplayMusic.css";
 
 const DisplayMusic = (props) => {
@@ -24,7 +24,7 @@ const DisplayMusic = (props) => {
                     <td>{song.album}</td>
                     <td>{song.artist}</td>
                     <td>{song.genre}</td>
-                    <td>{song.releaseDate}</td>
+                    <td>{song.release_date}</td>
                     <td><button onClick={() => props.deleteSong(song.id)}>DELETE</button></td>
                 </tr>
                 )})}

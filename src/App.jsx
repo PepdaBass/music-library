@@ -4,6 +4,7 @@ import axios from 'axios';
 import SearchBar from './Components/SearchBar/SearchBar';
 import NavBar from './Components/NavBar/NavBar';
 import DisplayMusic from './Components/DisplayMusic/DisplayMusic';
+import CreateSong from './Components/CreateSong/CreateSong';
 import './App.css';
 
 
@@ -21,18 +22,37 @@ function App() {
     deleteSong();
   }, [])
 
+  useEffect(() => {
+    postNewSong();
+  }, [])
+
   async function getAllSongs(){
     let response = await axios.get('http://127.0.0.1:8000/music/');
     setSongs(response.data);
   }
 
   async function deleteSong(songs){
-    console.log(songs)
     let response = await axios.delete(`http://127.0.0.1:8000/music/${songs}/`);
     console.log(response)
     if (response.status === 204) {
       await getAllSongs();
     }
+  }
+
+
+
+  async function postNewSong(newSong){
+    console.log(newSong)
+    let response = await axios.post('http://127.0.0.1:8000/music/', newSong);
+    console.log(response)
+    if (response.status === 201) {
+      await getAllSongs();
+    }
+  }
+
+  function addNewSong(song){
+    let tempSongs = [...songs, song];
+    setSongs(tempSongs);
   }
 
 
@@ -56,6 +76,7 @@ function App() {
     <div>
       <NavBar />
       <SearchBar />
+      <CreateSong parentSongs = {songs} postNewSong = {postNewSong} />
       <DisplayMusic parentSongs = {songs} deleteSong = {deleteSong}/>
     </div>
   );
