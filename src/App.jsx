@@ -1,5 +1,5 @@
 
-import react, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import SearchBar from './Components/SearchBar/SearchBar';
 import NavBar from './Components/NavBar/NavBar';
@@ -37,11 +37,6 @@ function App() {
     }
   }
 
-
-
-  
-
-
   // const searchData = (value, type) => {
   //   songs.filter((value) => {
   //     if (search == "") {
@@ -55,8 +50,6 @@ function App() {
   //   })
   //   return setSearch(value.type);
   // }
-
-
 
   return (
     <div>
