@@ -1,0 +1,14 @@
+
+.create-new-song {
+    display: flex;
+    flex-direction: row;
+    padding: 2em 0 2em 0;
+}
+
+.flex-item {
+    flex: auto;
+}
+
+.flex-item button {
+    margin-top: -0.4em;
+}

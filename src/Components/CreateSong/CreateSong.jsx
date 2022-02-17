@@ -38,30 +38,25 @@ const CreateSong = (props) => {
 
     return ( 
         <div>
-            <form onSubmit={postNewSong}>
-                <div>
-                    <div>
-                        <label>Title</label>
-                        <input type="text" value={title} onChange={(event) => setTitle(event.target.value)} />
+            <form className="form-group bg-dark" onSubmit={postNewSong}>
+                <div className="create-new-song">
+                    <div className="flex-item">
+                        <input type="text" value={title} placeholder="Title..." onChange={(event) => setTitle(event.target.value)} />
                     </div>
-                    <div>
-                        <label>Album</label>
-                        <input type="text" value={album} onChange={(event) => setAlbum(event.target.value)} />
+                    <div className="flex-item">
+                        <input type="text" value={album} placeholder="Album..." onChange={(event) => setAlbum(event.target.value)} />
                     </div>
-                    <div>
-                        <label>Artist</label>
-                        <input type="text" value={artist} onChange={(event) => setArtist(event.target.value)} />
+                    <div className="flex-item">
+                        <input type="text" value={artist} placeholder="Artist..." onChange={(event) => setArtist(event.target.value)} />
                     </div>
-                    <div>
-                        <label>Genre</label>
-                        <input type="text" value={genre} onChange={(event) => setGenre(event.target.value)} />
+                    <div className="flex-item">
+                        <input type="text" value={genre} placeholder="Genre..." onChange={(event) => setGenre(event.target.value)} />
                     </div>
-                    <div>
-                        <label>Release Date</label>
-                        <input type="date" value={release_date} onChange={(event) => setReleaseDate(event.target.value)} />
+                    <div className="flex-item">
+                        <input type="date" value={release_date} placeholder="Release date..." onChange={(event) => setReleaseDate(event.target.value)} />
                     </div>
-                    <div>
-                        <button type="submit">Add New Song</button>
+                    <div className="flex-item">
+                        <button className="btn btn-outline-success"type="submit">Add New Song</button>
                     </div>
                 </div>
             </form>
