@@ -28,7 +28,10 @@ const SearchBar = ({ parentSongs, search, setSearch, setFilteredSongs }) => {
         <form onSubmit={handleSubmit}>
             <div className="song-search">
                 <div>
-                    <input type="search" value={search} placeholder="Search song info..." onChange={(event) => setSearch(event.target.value)}/>
+                    <input type="text" value={search} placeholder="Search song info..." onChange={(event) => setSearch(event.target.value)}/>
+                </div>
+                <div>
+                    <button className="btn btn-success" type="submit">Search</button>
                 </div>
             </div>
         </form>
