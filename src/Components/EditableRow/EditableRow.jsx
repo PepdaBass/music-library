@@ -1,24 +1,19 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 
 
-const EditableRow = ({ song, editSongData, i, handleCancelClick }) => {
+const EditableRow = ({ i, handleCancelClick, handleEditChange, editData, handleEditClick }) => {
 
-    const [title, setTitle] = useState("");
-    const [album, setAlbum] = useState("");
-    const [artist, setArtist] = useState("");
-    const [genre, setGenre] = useState("");
-    const [release_date, setReleaseDate] = useState("");
 
     return ( 
         <tr key={i}>
-            <td><input type="text" value={song.title} placeholder="Title..." onChange={(event) => setTitle(event.target.value)} /></td>
-            <td><input type="text" value={song.album} placeholder="Album..." onChange={(event) => setAlbum(event.target.value)} /></td>
-            <td><input type="text" value={song.artist} placeholder="Artist..." onChange={(event) => setArtist(event.target.value)} /></td>
-            <td><input type="text" value={song.genre} placeholder="Genre..." onChange={(event) => setGenre(event.target.value)} /></td>
-            <td><input type="date" value={song.release_date} placeholder="Release date..." onChange={(event) => setReleaseDate(event.target.value)} /></td>
-            <td><button type="submit" className="btn btn-outline-info btn-sm" onClick={() => editSongData(song.id)}>SAVE</button></td>
-            <td><button type="button" className="btn btn-outline-danger btn-sm" onClick={() => handleCancelClick()}>CANCEL</button></td>
+            <td><input type="text" name="title" value={editData.title} placeholder="Title..." onChange={handleEditChange} /></td>
+            <td><input type="text" name="album" value={editData.album} placeholder="Album..." onChange={handleEditChange} /></td>
+            <td><input type="text" name="artist" value={editData.artist} placeholder="Artist..." onChange={handleEditChange} /></td>
+            <td><input type="text" name="genre" value={editData.genre} placeholder="Genre..." onChange={handleEditChange} /></td>
+            <td><input type="date" name="release_date" value={editData.release_date} placeholder="Release date..." onChange={handleEditChange} /></td>
+            <td><button type="submit" className="btn btn-outline-info btn-sm">SAVE</button></td>
+            <td><button type="button" className="btn btn-outline-danger btn-sm" onClick={handleCancelClick}>CANCEL</button></td>
         </tr>
      );
 }

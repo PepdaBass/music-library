@@ -1,32 +1,26 @@
 
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import "./CreateSong.css"
 
 
-const CreateSong = (props) => {
-
-    const [title, setTitle] = useState("");
-    const [album, setAlbum] = useState("");
-    const [artist, setArtist] = useState("");
-    const [genre, setGenre] = useState("");
-    const [release_date, setReleaseDate] = useState("");
+const CreateSong = ({ formData, getAllSongs, handleFormChange }) => {
 
     async function postNewSong(event){
         event.preventDefault();
         let newSong = {
-            title : title,
-            album : album,
-            artist : artist,
-            genre : genre,
-            release_date : release_date
+            title : formData.title,
+            album : formData.album,
+            artist : formData.artist,
+            genre : formData.genre,
+            release_date : formData.release_date
         }
         console.log(newSong)
         let response = await axios.post('http://127.0.0.1:8000/music/', newSong);
         console.log(response)
         if (response.status === 201) {
-          await props.getAllSongs();
+          await getAllSongs();
         }
       }
 
@@ -41,19 +35,19 @@ const CreateSong = (props) => {
             <form className="form-group bg-dark" onSubmit={postNewSong}>
                 <div className="create-new-song">
                     <div className="flex-item">
-                        <input type="text" value={title} placeholder="Title..." onChange={(event) => setTitle(event.target.value)} />
+                        <input type="text" name="title" placeholder="Title..." onChange={handleFormChange} />
                     </div>
                     <div className="flex-item">
-                        <input type="text" value={album} placeholder="Album..." onChange={(event) => setAlbum(event.target.value)} />
+                        <input type="text" name="album" placeholder="Album..." onChange={handleFormChange} />
                     </div>
                     <div className="flex-item">
-                        <input type="text" value={artist} placeholder="Artist..." onChange={(event) => setArtist(event.target.value)} />
+                        <input type="text" name="artist" placeholder="Artist..." onChange={handleFormChange} />
                     </div>
                     <div className="flex-item">
-                        <input type="text" value={genre} placeholder="Genre..." onChange={(event) => setGenre(event.target.value)} />
+                        <input type="text" name="genre" placeholder="Genre..." onChange={handleFormChange} />
                     </div>
                     <div className="flex-item">
-                        <input type="date" value={release_date} placeholder="Release date..." onChange={(event) => setReleaseDate(event.target.value)} />
+                        <input type="date" name="release_date" placeholder="Release date..." onChange={handleFormChange} />
                     </div>
                     <div className="flex-item">
                         <button className="btn btn-outline-success"type="submit">Add New Song</button>

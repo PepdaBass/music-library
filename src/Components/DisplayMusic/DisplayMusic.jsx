@@ -2,27 +2,69 @@
 import React, { useState, Fragment } from 'react';
 import EditableRow from '../EditableRow/EditableRow';
 import ReadOnlyRow from '../ReadOnlyRow/ReadOnlyRow';
+import axios from 'axios';
 import "./DisplayMusic.css";
 
-const DisplayMusic = ({ deleteSong, parentSongs }) => {
+const DisplayMusic = ({ deleteSong, parentSongs, getAllSongs }) => {
 
     const [editSongID, setEditSongID] = useState(null);
+    const [editData, setEditData] = useState({
+        title: "",
+        album: "",
+        artist: "",
+        genre: "",
+        release_date: ""
+    })
+
+    function handleEditChange(event) {
+        event.preventDefault();
+    
+        const fieldName = event.target.getAttribute("name");
+        const fieldValue = event.target.value;
+    
+        const newFormData = { ...editData};
+        newFormData[fieldName] = fieldValue;
+    
+        setEditData(newFormData);
+    }
 
     function handleEditClick(event, song) {
         event.preventDefault();
         setEditSongID(song.id);
+
+        const editValues = {
+            title: song.title,
+            album: song.album,
+            artist: song.artist,
+            genre: song.genre,
+            release_date: song.release_date
+        }
+        setEditData(editValues);
     }
 
     function handleCancelClick(event) {
         setEditSongID(null);
     }
 
-    async function editSongData() {
-
-    }
+    async function editSongData(event) {
+        event.preventDefault();
+        let editSong = {
+            title : editData.title,
+            album : editData.album,
+            artist : editData.artist,
+            genre : editData.genre,
+            release_date : editData.release_date
+        }
+        console.log(editSong)
+        let response = await axios.put(`http://127.0.0.1:8000/music/${editSongID}/`);
+        console.log(response)
+        if (response.status === 200) {
+          await getAllSongs();
+        }
+      }
 
     return ( 
-        <form>
+        <form onSubmit={editSongData}>
             <table className="table table-striped table-dark">
                 <thead>
                     <tr>
@@ -37,10 +79,13 @@ const DisplayMusic = ({ deleteSong, parentSongs }) => {
                 </thead>
                 <tbody>
                 {parentSongs.map((song, i) => {
+                    
+                 
+
                     return (
                         <Fragment>
                         {editSongID === song.id ? (
-                        <EditableRow song={song} editSongData={editSongData} i={i} handleCancelClick={handleCancelClick} /> 
+                        <EditableRow editData={editData} handleEditClick={handleEditClick} i={i} handleCancelClick={handleCancelClick} handleEditChange={handleEditChange} /> 
                         ) : (
                         <ReadOnlyRow i={i} song={song} handleEditClick={handleEditClick} deleteSong={deleteSong} />
                         )}
@@ -53,4 +98,3 @@ const DisplayMusic = ({ deleteSong, parentSongs }) => {
 }
  
 export default DisplayMusic;
-

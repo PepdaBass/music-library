@@ -11,8 +11,13 @@ import './App.css';
 function App() {
 
   const [songs, setSongs] = useState([]);
-  const [search, setSearch] = useState([]);
-
+  const [formData, setFormData] = useState({
+    title: "",
+    album: "",
+    artist: "",
+    genre: "",
+    release_date: ""
+  })
 
   useEffect(() => {
     getAllSongs();
@@ -22,7 +27,17 @@ function App() {
     deleteSong();
   }, [])
 
-  
+  function handleFormChange(event) {
+    event.preventDefault();
+
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
+
+    const newFormData = { ...formData};
+    newFormData[fieldName] = fieldValue;
+
+    setFormData(newFormData);
+}
 
   async function getAllSongs(){
     let response = await axios.get('http://127.0.0.1:8000/music/');
@@ -37,26 +52,12 @@ function App() {
     }
   }
 
-  // const searchData = (value, type) => {
-  //   songs.filter((value) => {
-  //     if (search == "") {
-  //       return value;
-  //     }
-  //     else if (value.type.toLowerCase().includes(search.toLowerCase())) {
-  //       return value;
-  //     }
-  //   }).map((value, i) => {
-  //     return value.type;
-  //   })
-  //   return setSearch(value.type);
-  // }
-
   return (
     <div>
       <NavBar />
       <SearchBar />
-      <CreateSong parentSongs = {songs} getAllSongs = {getAllSongs}/>
-      <DisplayMusic parentSongs = {songs} deleteSong = {deleteSong}/>
+      <CreateSong setFormData={setFormData} formData={formData} getAllSongs={getAllSongs} handleFormChange={handleFormChange} />
+      <DisplayMusic parentSongs={songs} deleteSong={deleteSong} getAllSongs={getAllSongs} />
     </div>
   );
 }

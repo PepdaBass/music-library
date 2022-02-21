@@ -1,6 +1,9 @@
 import React from 'react';
 
 const ReadOnlyRow = ({ song, deleteSong, handleEditClick, i }) => {
+
+
+
     return ( 
         <tr key={i}>
             <td>{song.title}</td>
