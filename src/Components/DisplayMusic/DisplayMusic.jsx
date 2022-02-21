@@ -61,6 +61,7 @@ const DisplayMusic = ({ deleteSong, parentSongs, getAllSongs }) => {
         if (response.status === 200) {
           await getAllSongs();
         }
+        setEditSongID(null);
       }
 
       useEffect(() => {
@@ -68,7 +69,7 @@ const DisplayMusic = ({ deleteSong, parentSongs, getAllSongs }) => {
       }, [])
 
     return ( 
-        <form onSubmit={() => editSongData(editData)}>
+        <form onSubmit={(event) => editSongData(event)}>
             <table className="table table-striped table-dark">
                 <thead>
                     <tr>

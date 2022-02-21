@@ -32,7 +32,7 @@ const CreateSong = ({ formData, getAllSongs, handleFormChange }) => {
 
     return ( 
         <div>
-            <form className="form-group bg-dark" onSubmit={postNewSong}>
+            <form className="form-group bg-dark" onSubmit={(event) => postNewSong(event)}>
                 <div className="create-new-song">
                     <div className="flex-item">
                         <input type="text" name="title" placeholder="Title..." onChange={handleFormChange} />
