@@ -1,15 +1,27 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import "./SearchBar.css"
 
-const SearchBar = (props) => {
+const SearchBar = ({ parentSongs, search, setSearch, setFilteredSongs }) => {
 
-   const [search, setSearch] = useState("");
-   const [filteredSongs, setFilteredSongs] = useState([]);
+    function handleSubmit(event) {
+        event.preventDefault();
+        filterMusic();
+    }
 
-   function handleSubmit(event) {
-       event.preventDefault();
-   }
+    function filterMusic(){
+        let searchResults = parentSongs.filter((song) => {
+            if(song.title.includes(search) || song.album.includes(search) || song.artist.includes(search) || song.genre.includes(search) || song.release_date.includes(search)){
+                return true;
+            }
+                 return false;
+        })
+        setFilteredSongs(searchResults);
+    } 
+
+    useEffect(() => {
+        setFilteredSongs(parentSongs);
+    },[parentSongs])
 
     return ( 
         <div className='search-bar'>

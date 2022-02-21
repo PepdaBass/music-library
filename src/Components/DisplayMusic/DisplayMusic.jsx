@@ -5,7 +5,7 @@ import ReadOnlyRow from '../ReadOnlyRow/ReadOnlyRow';
 import axios from 'axios';
 import "./DisplayMusic.css";
 
-const DisplayMusic = ({ deleteSong, parentSongs, getAllSongs }) => {
+const DisplayMusic = ({ deleteSong, filteredSongs, getAllSongs }) => {
 
     const [editSongID, setEditSongID] = useState(null);
     const [editData, setEditData] = useState({
@@ -28,7 +28,7 @@ const DisplayMusic = ({ deleteSong, parentSongs, getAllSongs }) => {
         setEditData(newFormData);
     }
 
-    function handleEditClick(event, song) {
+    function handleEditClick(song, event) {
         event.preventDefault();
         setEditSongID(song.id);
 
@@ -64,10 +64,7 @@ const DisplayMusic = ({ deleteSong, parentSongs, getAllSongs }) => {
         setEditSongID(null);
       }
 
-      useEffect(() => {
-          editSongData();
-      }, [])
-
+  
     return ( 
         <form onSubmit={(event) => editSongData(event)}>
             <table className="table table-striped table-dark">
@@ -83,7 +80,7 @@ const DisplayMusic = ({ deleteSong, parentSongs, getAllSongs }) => {
                     </tr>
                 </thead>
                 <tbody>
-                {parentSongs.map((song, i) => {
+                {filteredSongs.map((song, i) => {
 
                     return (
                         <Fragment key={i}>

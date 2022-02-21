@@ -18,14 +18,12 @@ function App() {
     genre: "",
     release_date: ""
   })
+  const [search, setSearch] = useState("");
+  const [filteredSongs, setFilteredSongs] = useState([]);
 
   useEffect(() => {
     getAllSongs();
     }, [])
-
-  useEffect(() => {
-    deleteSong();
-  }, [])
 
   function handleFormChange(event) {
     event.preventDefault();
@@ -44,7 +42,8 @@ function App() {
     setSongs(response.data);
   }
 
-  async function deleteSong(songs){
+  async function deleteSong(songs, event){
+    event.preventDefault();
     let response = await axios.delete(`http://127.0.0.1:8000/music/${songs}/`);
     console.log(response)
     if (response.status === 204) {
@@ -52,12 +51,14 @@ function App() {
     }
   }
 
+
+
   return (
     <div>
       <NavBar />
-      <SearchBar />
+      <SearchBar parentSongs={songs} filteredSongs={filteredSongs} search={search} setSearch={setSearch} setFilteredSongs={setFilteredSongs} />
       <CreateSong setFormData={setFormData} formData={formData} getAllSongs={getAllSongs} handleFormChange={handleFormChange} />
-      <DisplayMusic parentSongs={songs} deleteSong={deleteSong} getAllSongs={getAllSongs} />
+      <DisplayMusic filteredSongs={songs} deleteSong={deleteSong} getAllSongs={getAllSongs} />
     </div>
   );
 }

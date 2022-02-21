@@ -24,11 +24,6 @@ const CreateSong = ({ formData, getAllSongs, handleFormChange }) => {
         }
       }
 
-      useEffect(() => {
-        postNewSong();
-      }, [])
-
-
 
     return ( 
         <div>
