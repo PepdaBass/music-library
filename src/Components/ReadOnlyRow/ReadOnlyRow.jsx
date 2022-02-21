@@ -5,7 +5,7 @@ const ReadOnlyRow = ({ song, deleteSong, handleEditClick, i }) => {
 
 
     return ( 
-        <tr key={i}>
+        <tr>
             <td>{song.title}</td>
             <td>{song.album}</td>
             <td>{song.artist}</td>

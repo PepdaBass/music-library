@@ -1,5 +1,5 @@
 
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import EditableRow from '../EditableRow/EditableRow';
 import ReadOnlyRow from '../ReadOnlyRow/ReadOnlyRow';
 import axios from 'axios';
@@ -56,15 +56,19 @@ const DisplayMusic = ({ deleteSong, parentSongs, getAllSongs }) => {
             release_date : editData.release_date
         }
         console.log(editSong)
-        let response = await axios.put(`http://127.0.0.1:8000/music/${editSongID}/`);
+        let response = await axios.put(`http://127.0.0.1:8000/music/${editSongID}/`, editSong);
         console.log(response)
         if (response.status === 200) {
           await getAllSongs();
         }
       }
 
+      useEffect(() => {
+          editSongData();
+      }, [])
+
     return ( 
-        <form onSubmit={editSongData}>
+        <form onSubmit={() => editSongData(editData)}>
             <table className="table table-striped table-dark">
                 <thead>
                     <tr>
@@ -79,11 +83,9 @@ const DisplayMusic = ({ deleteSong, parentSongs, getAllSongs }) => {
                 </thead>
                 <tbody>
                 {parentSongs.map((song, i) => {
-                    
-                 
 
                     return (
-                        <Fragment>
+                        <Fragment key={i}>
                         {editSongID === song.id ? (
                         <EditableRow editData={editData} handleEditClick={handleEditClick} i={i} handleCancelClick={handleCancelClick} handleEditChange={handleEditChange} /> 
                         ) : (

@@ -6,7 +6,7 @@ const EditableRow = ({ i, handleCancelClick, handleEditChange, editData, handleE
 
 
     return ( 
-        <tr key={i}>
+        <tr>
             <td><input type="text" name="title" value={editData.title} placeholder="Title..." onChange={handleEditChange} /></td>
             <td><input type="text" name="album" value={editData.album} placeholder="Album..." onChange={handleEditChange} /></td>
             <td><input type="text" name="artist" value={editData.artist} placeholder="Artist..." onChange={handleEditChange} /></td>
