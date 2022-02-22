@@ -11,10 +11,10 @@ const SearchBar = ({ parentSongs, search, setSearch, setFilteredSongs }) => {
 
     function filterMusic(){
         let searchResults = parentSongs.filter((song) => {
-            if(song.title.includes(search) || song.album.includes(search) || song.artist.includes(search) || song.genre.includes(search) || song.release_date.includes(search)){
+            if(song.title.includes(search)){
                 return true;
             }
-                 return false;
+                return false;
         })
         setFilteredSongs(searchResults);
     } 
@@ -25,7 +25,7 @@ const SearchBar = ({ parentSongs, search, setSearch, setFilteredSongs }) => {
 
     return ( 
         <div className='search-bar'>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(event) => handleSubmit(event)}>
             <div className="song-search">
                 <div>
                     <input type="text" value={search} placeholder="Search song info..." onChange={(event) => setSearch(event.target.value)}/>

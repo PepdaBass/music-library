@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ReadOnlyRow = ({ song, deleteSong, handleEditClick, i }) => {
+const ReadOnlyRow = ({ song, deleteSong, handleEditClick }) => {
 
 
 

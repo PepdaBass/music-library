@@ -85,9 +85,9 @@ const DisplayMusic = ({ deleteSong, filteredSongs, getAllSongs }) => {
                     return (
                         <Fragment key={i}>
                         {editSongID === song.id ? (
-                        <EditableRow editData={editData} handleEditClick={handleEditClick} i={i} handleCancelClick={handleCancelClick} handleEditChange={handleEditChange} /> 
+                        <EditableRow editData={editData} handleCancelClick={handleCancelClick} handleEditChange={handleEditChange} /> 
                         ) : (
-                        <ReadOnlyRow i={i} song={song} handleEditClick={handleEditClick} deleteSong={deleteSong} />
+                        <ReadOnlyRow song={song} handleEditClick={handleEditClick} deleteSong={deleteSong} />
                         )}
                         </Fragment>
                     )})}

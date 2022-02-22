@@ -2,7 +2,7 @@
 import React from 'react';
 
 
-const EditableRow = ({ i, handleCancelClick, handleEditChange, editData }) => {
+const EditableRow = ({ handleCancelClick, handleEditChange, editData }) => {
 
 
     return ( 
